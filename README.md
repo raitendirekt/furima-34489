@@ -2,16 +2,16 @@
 
 ## Users table
 
-| Column           | Type    | Options                   |
-| ---------------- | ------- | ------------------------- |
-| nickname         | string  | null: false               |
-| email            | string  | null: false, unique: true |
-| password         | string  | null: false               |
-| family_name      | string  | null: false               |
-| first_name       | string  | null: false               |
-| kana_family_name | string  | null: false               |
-| kana_first_name  | string  | null: false               |
-| birthday         | date    | null: false               |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| family_name        | string  | null: false               |
+| first_name         | string  | null: false               |
+| kana_family_name   | string  | null: false               |
+| kana_first_name    | string  | null: false               |
+| birthday           | date    | null: false               |
 
 ### Association
 
@@ -28,7 +28,7 @@
 | condition_id     | integer    | null: false       |
 | bear_shipping_id | integer    | null: false       |
 | prefecture_id    | integer    | null: false       |
-| shipment_days_id | integer    | null: false       |
+| shipment_day_id  | integer    | null: false       |
 | price            | integer    | null: false       |
 | user             | references | foreign_key: true |
 
