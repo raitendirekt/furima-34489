@@ -2,16 +2,16 @@
 
 ## Users table
 
-| Column           | Type    | Options                           |
-| ---------------- | ------- | --------------------------------- |
-| nickname         | string  | null: false                       |
-| email            | string  | null: false, unique: true         |
-| password         | string  | null: false                       |
-| family_name      | string  | null: false, Full-width character |
-| first_name       | string  | null: false, Full-width character |
-| kana_family_name | string  | null: false, Full-width character |
-| kana_first_name  | string  | null: false, Full-width character |
-| birthday         | integer | null: false                       |
+| Column           | Type    | Options                   |
+| ---------------- | ------- | ------------------------- |
+| nickname         | string  | null: false               |
+| email            | string  | null: false, unique: true |
+| password         | string  | null: false               |
+| family_name      | string  | null: false               |
+| first_name       | string  | null: false               |
+| kana_family_name | string  | null: false               |
+| kana_first_name  | string  | null: false               |
+| birthday         | date    | null: false               |
 
 ### Association
 
@@ -20,17 +20,17 @@
 
 ## Items table
 
-| Column           | Type    | Options                              |
-| ---------------- | ------- | ------------------------------------ |
-| name             | string  | null: false, Maximum 40 characters   |
-| description      | text    | null: false, Maximum 1000 characters |
-| category         | integer | null: false                          |
-| condition        | integer | null: false                          |
-| bear_shipping    | integer | null: false                          |
-| region           | integer | null: false                          |
-| shipment_days    | integer | null: false                          |
-| price            | integer | null: false                          |
-
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ----------------- |
+| name             | string     | null: false       |
+| description      | text       | null: false       |
+| category_id      | integer    | null: false       |
+| condition_id     | integer    | null: false       |
+| bear_shipping_id | integer    | null: false       |
+| prefecture_id    | integer    | null: false       |
+| shipment_days_id | integer    | null: false       |
+| price            | integer    | null: false       |
+| user             | references | foreign_key: true |
 
 ### Association
 
@@ -55,7 +55,7 @@
 | Column        | Type       | Options                   |
 | ------------- | ---------- | ------------------------- |
 | postal_code   | integer    | null: false               |
-| prefecture    | integer    | null: false               |
+| prefecture_id | integer    | null: false               |
 | city          | string     | null: false               |
 | house_number  | string     | null: false               |
 | building_name | string     |                           |
