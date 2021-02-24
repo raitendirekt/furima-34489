@@ -41,6 +41,11 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'abc123'
         expect(@user).to be_valid
       end
+      it 'is not valid if password is full-width characters' do
+        @user.password = 'ａｂｃ１２３'
+        @user.password_confirmation = 'ａｂｃ１２３'
+        expect(@user).to_not be_valid
+      end
       it 'is not valid if password is not alphanumeric' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
@@ -76,12 +81,12 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First name must be full-width characters')
       end
-      it 'is not valid without kana_family_name' do
+      it 'is not valid without a kana_family_name' do
         @user.kana_family_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Kana family name can't be blank")
       end
-      it 'is not valid without kana_first_name' do
+      it 'is not valid without a kana_first_name' do
         @user.kana_first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Kana first name can't be blank")
