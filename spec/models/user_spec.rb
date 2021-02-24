@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-      @user = FactoryBot.build(:user)
+    @user = FactoryBot.build(:user)
   end
 
   describe '#create' do
     it 'is valid with valid attributes' do
-        expect(@user).to be_valid
-      end
+      expect(@user).to be_valid
+    end
 
     context 'User Information' do
       it 'is not valid without a nickname' do
@@ -69,22 +69,22 @@ RSpec.describe User, type: :model do
       it 'is not valid if family_name is not full-width characters' do
         @user.family_name = 'Yamada'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name must be full-width characters")
+        expect(@user.errors.full_messages).to include('Family name must be full-width characters')
       end
       it 'is not valid if first_name is not full-width characters' do
         @user.first_name = 'Hanako'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name must be full-width characters")
+        expect(@user.errors.full_messages).to include('First name must be full-width characters')
       end
       it 'is not valid if kana_family_name is not full-width katakana characters' do
         @user.kana_family_name = '山田'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Kana family name must be full-width katakana characters")
+        expect(@user.errors.full_messages).to include('Kana family name must be full-width katakana characters')
       end
       it 'is not valid if kana_first_name is not full-width katakana characters' do
         @user.kana_first_name = '花子'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Kana first name must be full-width katakana characters")
+        expect(@user.errors.full_messages).to include('Kana first name must be full-width katakana characters')
       end
       it 'is not valid without a birthday' do
         @user.birthday = ''
@@ -92,6 +92,5 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
     end
-
   end
 end
