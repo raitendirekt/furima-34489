@@ -76,6 +76,16 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First name must be full-width characters')
       end
+      it 'is not valid without kana_family_name' do
+        @user.kana_family_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kana family name can't be blank")
+      end
+      it 'is not valid without kana_first_name' do
+        @user.kana_first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kana first name can't be blank")
+      end
       it 'is not valid if kana_family_name is not full-width katakana characters' do
         @user.kana_family_name = '山田'
         @user.valid?
