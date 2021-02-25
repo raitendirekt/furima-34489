@@ -17,8 +17,4 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :image, presence: true
 
-  private
-
-  def item_params
-    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
 end
