@@ -42,27 +42,27 @@ RSpec.describe Item, type: :model do
       it 'is not valid without a category' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it 'is not valid without a condition' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+        expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
       it 'is not valid without a bear shipping' do
         @item.bear_shipping_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Bear shipping must be other than 1")
+        expect(@item.errors.full_messages).to include('Bear shipping must be other than 1')
       end
       it 'is not valid without a prefecture' do
         @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it 'is not valid without a shipment day' do
         @item.shipment_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipment day must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipment day must be other than 1')
       end
       it 'is not valid without a price' do
         @item.price = ''
@@ -72,17 +72,17 @@ RSpec.describe Item, type: :model do
       it 'is not valid if price is less than 300' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'is not valid if price is more than 9,999,999' do
         @item.price = '10_000_000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'is not valid if price is not half-width number' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
     end
   end
