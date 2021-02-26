@@ -20,4 +20,5 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipment_day_id
   end
+  validates :price, numericality: true
 end
