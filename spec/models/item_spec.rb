@@ -10,6 +10,18 @@ RSpec.describe Item, type: :model do
       it 'is valid with valid attributes' do
         expect(@item).to be_valid
       end
+      it 'is valid if price is 300' do
+        @item.price = '300'
+        expect(@item).to be_valid
+      end
+      it 'is valid if price is 9,999,999' do
+        @item.price = '9_999_999'
+        expect(@item).to be_valid
+      end
+      it 'is valid if price is half-width number' do
+        @item.price = '300'
+        expect(@item).to be_valid
+      end
     end
     context 'when not valid' do
       it 'is not valid without an image' do
@@ -28,29 +40,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'is not valid without a category' do
-        @item.category_id = nil
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it 'is not valid without a condition' do
-        @item.condition_id = nil
+        @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition is not a number")
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
       it 'is not valid without a bear shipping' do
-        @item.bear_shipping_id = nil
+        @item.bear_shipping_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Bear shipping is not a number")
+        expect(@item.errors.full_messages).to include("Bear shipping must be other than 1")
       end
       it 'is not valid without a prefecture' do
-        @item.prefecture_id = nil
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture is not a number")
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it 'is not valid without a shipment day' do
-        @item.shipment_day_id = nil
+        @item.shipment_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipment day is not a number")
+        expect(@item.errors.full_messages).to include("Shipment day must be other than 1")
       end
       it 'is not valid without a price' do
         @item.price = ''
