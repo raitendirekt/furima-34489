@@ -18,11 +18,11 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address).to be_valid
       end
       it 'is valid if a mobile_number contains 10 digits' do
-        @purchase_address.mobile_number = 1234567890
+        @purchase_address.mobile_number = 1_234_567_890
         expect(@purchase_address).to be_valid
       end
       it 'is valid if a mobile_number contains 11 digits' do
-        @purchase_address.mobile_number = 1234568901
+        @purchase_address.mobile_number = 1_234_568_901
         expect(@purchase_address).to be_valid
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'is not valid if a postal_cade is not hyphenated' do
         @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'is not valid without a prefecture' do
         @purchase_address.prefecture_id = '1'
@@ -65,12 +65,12 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'is not valid if a mobile_number is alphanumeric' do
         @purchase_address.mobile_number = '12345abcde'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Mobile number must be a figure")
+        expect(@purchase_address.errors.full_messages).to include('Mobile number must be a figure')
       end
       it 'is not valid if a mobile_number is half-with alphabet' do
         @purchase_address.mobile_number = 'mobilenumber'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Mobile number must be a figure")
+        expect(@purchase_address.errors.full_messages).to include('Mobile number must be a figure')
       end
     end
   end
