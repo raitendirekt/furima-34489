@@ -27,6 +27,11 @@ RSpec.describe PurchaseAddress, type: :model do
       end
     end
     context 'when not valid' do
+      it 'is not valid without a token' do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+      end
       it 'is not valid without a postal_code' do
         @purchase_address.postal_code = ''
         @purchase_address.valid?
