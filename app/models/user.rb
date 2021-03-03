@@ -16,4 +16,5 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'must include both letters and numbers'
   validates :birthday, presence: true
   has_many :items
+  has_many :purchases
 end
