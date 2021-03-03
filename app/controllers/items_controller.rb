@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :seller_confirmation, only: [:edit, :update, :destroy]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -52,5 +53,9 @@ class ItemsController < ApplicationController
 
   def seller_confirmation
     redirect_to action: :index unless current_user.id == @item.user_id
+  end
+
+  def move_to_index
+    redirect_to action: :index if @item.purchase
   end
 end
