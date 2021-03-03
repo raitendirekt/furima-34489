@@ -18,11 +18,11 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address).to be_valid
       end
       it 'is valid if a mobile_number contains 10 digits' do
-        @purchase_address.mobile_number = 1_234_567_890
+        @purchase_address.mobile_number = 1_111_111_111
         expect(@purchase_address).to be_valid
       end
       it 'is valid if a mobile_number contains 11 digits' do
-        @purchase_address.mobile_number = 1_234_568_901
+        @purchase_address.mobile_number = 11_111_111_111
         expect(@purchase_address).to be_valid
       end
     end
@@ -71,6 +71,11 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.mobile_number = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Mobile number can't be blank")
+      end
+      it 'is not valid if a mobile_number contains 12 digits' do
+        @purchase_address.mobile_number = 111_111_111_111
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Mobile number must be a figure")
       end
       it 'is not valid if a mobile_number is alphanumeric' do
         @purchase_address.mobile_number = '12345abcde'
